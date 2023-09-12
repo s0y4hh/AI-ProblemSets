@@ -22,7 +22,7 @@ That puzzle was on the simpler side. With more characters and more sentences, th
 # Puzzle 0
 # A says "I am both a knight and a knave."
 knowledge0 = And(
-        # A is a knight or a knave but not both:
+        # A is a knight or a knave but not both
     And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
     # If A is a knight then what A says is true
     Implication(AKnight, And(AKnight, AKnave)),
@@ -36,13 +36,13 @@ knowledge0 = And(
 # A says "We are both knaves."
 # B says nothing.
 knowledge1 = And(
-    # If A is a knight, A and B are both knaves:
+    # If A is a knight, A and B are both knaves
     Implication(AKnight, And(AKnave, BKnave)),
-    # If A is a knave, his statement is false:
+    # If A is a knave, his statement is false
     Implication(AKnave, Not(And(AKnave, BKnave))),
     # A and B are knights or knaves but never be both
-    And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
-    And(Or(BKnight, BKnave), Not(And(BKnight, BKnave))),
+    Or(AKnight, AKnave),
+    Or(BKnight, BKnave)
 
     
 )
@@ -51,17 +51,17 @@ knowledge1 = And(
 # A says "We are the same kind."
 # B says "We are of different kinds."
 knowledge2 = And(
-    # If A is a knight, A and B are both the same
+    # If A is a knight, then they are the same kind
     Implication(AKnight, Or(And(AKnight, BKnight), And(AKnave, BKnave))),
     # If A is a knave, his statement is false
     Implication(AKnave, Not(Or(And(AKnight, BKnight), And(AKnave, BKnave)))),
-    # If B is a knight, A and B are not the same
+    # If B is a knight, Then they are not the same
     Implication(BKnight, Or(And(AKnight, BKnave), And(AKnave, BKnight))),
-    # If B is a knave, his statement is false
+    # If B is a knave, then his statement is false
     Implication(BKnave, Not(Or(And(AKnight, BKnave), And(AKnave, BKnight)))),
-        # A and B are knights or knaves but not both:
-    And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
-    And(Or(BKnight, BKnave), Not(And(BKnight, BKnave))),
+        # A and B are knights or knaves but not both
+    Or(AKnight, AKnave),
+    Or(BKnight, BKnave)
 )
 
 # Puzzle 3
@@ -74,7 +74,7 @@ knowledge3 = And(
     # If B is a knight, then C is a knave, and B says "A said:  'I am a knave'"
     Implication(BKnight, CKnave),
     Implication(BKnight, And(
-      # A then said "Or 'I am a Knave" So A can be a Knight or A Knave
+      # 
       Implication(AKnight, AKnave),
       Implication(AKnave, Not(AKnave)),
     )),
@@ -90,9 +90,9 @@ knowledge3 = And(
     # If C is a knave, A is not a knight
     Implication(CKnave, Not(AKnight)),
         # A, B and C are knights or knaves but not both
-    And(Or(AKnight, AKnave), Not(And(AKnight, AKnave))),
-    And(Or(BKnight, BKnave), Not(And(BKnight, BKnave))),
-    And(Or(CKnight, CKnave), Not(And(CKnight, CKnave))),
+    Or(AKnight, AKnave),
+    Or(BKnight,BKnave),
+    Or(CKnight,CKnave)
 )
 
 
